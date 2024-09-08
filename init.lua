@@ -93,6 +93,12 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
+-- Set one of the built-in colorschemes as default
+--vim.cmd.colorscheme 'koehler'
+vim.cmd.colorscheme 'torte'
+vim.opt.colorcolumn = '80'
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -153,9 +159,11 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
+-- Set the color of the cursorline
+vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#232323' })
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 3
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -830,16 +838,25 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+    --    priority = 1000, -- Make sure to load this before all the other start plugins.
+    --    init = function()
+    --      -- Load the colorscheme here.
+    --      -- Like many other themes, this one has different styles, and you could load
+    --      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    --      vim.cmd.colorscheme 'tokyonight-night'
+    --
+    --      -- You can configure highlights by doing something like:
+    --      vim.cmd.hi 'Comment gui=none'
+    --    end,
+  },
 
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
+  {
+    'askfiy/visual_studio_code',
+    --  lazy = false,
+    --  priority = 1000,
+    --  init = function()
+    --    vim.cmd.colorscheme 'visual_studio_code'
+    --  end,
   },
 
   -- Highlight todo, notes, etc in comments
