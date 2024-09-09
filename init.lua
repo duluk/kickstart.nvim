@@ -134,6 +134,9 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Highlight search matches in real time
+vim.opt.incsearch = true
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
@@ -967,6 +970,21 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+
+-- Set one of the built-in colorschemes as default
+--vim.cmd.colorscheme 'koehler'
+--vim.cmd.colorscheme 'torte'
+vim.cmd.colorscheme 'visual_studio_code'
+vim.opt.colorcolumn = '80'
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
+vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = function()
+    vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
+  end,
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
