@@ -95,9 +95,9 @@ vim.g.have_nerd_font = false
 
 -- Set one of the built-in colorschemes as default
 --vim.cmd.colorscheme 'koehler'
-vim.cmd.colorscheme 'torte'
-vim.opt.colorcolumn = '80'
-vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
+--vim.cmd.colorscheme 'torte'
+--vim.opt.colorcolumn = '80'
+--vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
