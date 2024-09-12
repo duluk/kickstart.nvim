@@ -46,3 +46,43 @@ vim.keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', { desc = '[C]lose current
 vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to [N]ext tab' })
 vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to [P]revious tab' })
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %f<CR>', { desc = 'Open current buffer in new tab' })
+
+-- [[ Keymaps from Primeagen ]]
+
+-- Allow moving highlighted lines
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv")
+
+-- When Joining lines, keep cursor at 0
+vim.keymap.set('n', 'J', 'mzJ`z')
+
+-- For half-page up/down, keep cursor in middle of screen
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- While searching, keep hits in middle of screen
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- "greatest keymap ever" -The Primeagen
+-- This allows you to paste over a highlighted word without losing the original
+-- yanked term
+vim.keymap.set('x', '<leader>p', '"_dP')
+
+-- "next greatest keymap ever" -The Primeagen
+-- From asbjornHaland. With leader-y, copies into the system clipboard
+vim.keymap.set('n', '<leader>y', '"+y')
+vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>Y', '"+Y')
+
+-- Map C-c to Esc so vertical Inserts will work; THIS is the greatest keymap
+-- ever IMHO
+vim.keymap.set('i', '<C-c>', '<Esc>')
+
+-- Capital Q is of the devil in vim
+vim.keymap.set('n', 'Q', '<nop>')
+
+-- Global replace of word point is on
+vim.keymap.set('n', '<leader>r', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
+-- Make buffer-file executable
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })

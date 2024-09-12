@@ -23,6 +23,13 @@ vim.opt.background = 'dark'
 -- Force backspace to behave "as expected"
 vim.opt.backspace = 'indent,eol,start'
 
+-- Using 2 because Company practice
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
 vim.opt.colorcolumn = ''
 vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
 vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
@@ -50,15 +57,9 @@ end)
 -- Enable break indent
 vim.opt.breakindent = true
 
--- Save undo history
-vim.opt.undofile = true
-
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- Highlight search matches in real time
-vim.opt.incsearch = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
@@ -90,3 +91,21 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 -- Set the color of the cursorline
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#232323' })
+
+vim.opt.wrap = false
+-- Break lines at this character:
+vim.opt.breakat = ' '
+-- Break lines at word boundaries:
+vim.opt.linebreak = true
+
+vim.opt.swapfile = false
+vim.opt.backup = true
+vim.opt.backupdir = os.getenv 'HOME' .. '/.local/state/nvim/backup'
+-- This should tie to undo plugin
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv 'HOME' .. '/.local/state/nvim/undo'
+
+-- Don't keep search terms highlighted
+vim.opt.hlsearch = false
+-- Highlight in-file matches as type a search
+vim.opt.incsearch = true
