@@ -1,0 +1,12 @@
+nvim/
+├── lua/
+│   └── jab3/
+│       ├── lazy.lua (?)
+│       ├── core/
+│       │   ├── init.lua
+│       │   ├── keymaps.lua
+│       │   └── options.lua
+│       └── plugins/
+│           ├── lsp/
+│           └── lazy.lua
+└── init.lua
