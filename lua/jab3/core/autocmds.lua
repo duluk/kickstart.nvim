@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Set the background color to black no matter the color scheme',
   pattern = '*',
   callback = function()
     vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
