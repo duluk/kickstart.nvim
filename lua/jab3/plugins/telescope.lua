@@ -59,6 +59,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
           require('telescope.themes').get_dropdown(),
         },
       },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        live_grep = {
+          find_command = { 'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden' },
+        },
+      },
     }
 
     -- Enable Telescope extensions if they are installed
