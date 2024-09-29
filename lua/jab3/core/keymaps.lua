@@ -53,9 +53,17 @@ vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer
 
 -- [[ Keymaps from Primeagen ]]
 
+-- Requires Prime's vim-with-me plugin
+-- vim.keymap.set("n", "<leader>vwm", function()
+--     require("vim-with-me").StartVimWithMe()
+-- end)
+-- vim.keymap.set("n", "<leader>svwm", function()
+--     require("vim-with-me").StopVimWithMe()
+-- end)
+
 -- Allow moving highlighted lines
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- When Joining lines, keep cursor at 0
 vim.keymap.set('n', 'J', 'mzJ`z')
@@ -71,13 +79,12 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- "greatest keymap ever" -The Primeagen
 -- This allows you to paste over a highlighted word without losing the original
 -- yanked term
-vim.keymap.set('x', '<leader>p', '"_dP')
+vim.keymap.set('x', '<leader>p', [["_dP]])
 
 -- "next greatest keymap ever" -The Primeagen
 -- From asbjornHaland. With leader-y, copies into the system clipboard
-vim.keymap.set('n', '<leader>y', '"+y')
-vim.keymap.set('v', '<leader>y', '"+y')
-vim.keymap.set('n', '<leader>Y', '"+Y')
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]])
 
 -- Map C-c to Esc so vertical Inserts will work; THIS is the greatest keymap
 -- ever IMHO
