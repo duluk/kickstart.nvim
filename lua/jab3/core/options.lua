@@ -9,6 +9,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Make line numbers default
+vim.opt.number = true
+-- Use relative line numbers, which is for jumping n lines with j/k
+vim.opt.relativenumber = true
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -17,28 +22,23 @@ vim.g.netrw_liststyle = 3
 
 -- Helps color schemes display properly
 vim.opt.termguicolors = true
+vim.opt.guicursor = ''
 -- If colorscheme has a dark variant, use it
 vim.opt.background = 'dark'
 
 -- Force backspace to behave "as expected"
 vim.opt.backspace = 'indent,eol,start'
 
--- Using 2 because Company practice
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+-- I go back and forth with 2 and 4. I think 4 looks better (today), but work uses 2.
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.colorcolumn = ''
 vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
 vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
-
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -64,8 +64,8 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
--- Decrease update time
-vim.opt.updatetime = 250
+-- Time in ms with no activity to fsync swap file (default 4000)
+vim.opt.updatetime = 500
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
