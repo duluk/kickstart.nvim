@@ -320,7 +320,26 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'ast-grep', -- Used to search for symbols
+        'clang-format', -- Used to format C/C++ code
+        'clangd', -- Used for C/C++
+        'cmake', -- Used for CMake projects
+        'cpplint', -- Used to lint C/C++ code
+        'eslint', -- Used to lint JavaScript, TypeScript, etc.
+        'golangci-lint-langserver', -- LSP for Go
+        'jsonlint', -- Used to lint JSON
+        'lua-language-server', -- LSP for Lua
+        'ols', -- LSP for Odin
+        'prettier', -- Used to format JavaScript, TypeScript, etc.
+        'python-lsp-server', -- LSP for Python
+        'rubocop', -- Used to lint Ruby
+        'ruby-lsp', -- LSP for Ruby
+        'rubyfmt', -- Used to format Ruby
+        'rust-analyzer', -- LSP for Rust
+        'shellharden', -- Used to lint shell scripts
         'stylua', -- Used to format Lua code
+        'typescript-language-server', -- LSP for TypeScript
+        'zls', -- LSP for Zig
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -332,6 +351,23 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+            -- -- harper-ls config for enabling/disabling as desired
+            -- if server_name == 'harper-ls' then
+            --   server.settings = {
+            --     harper = {
+            --       verbose = true,
+            --       diagnostics = {
+            --         ['comment-lenght'] = 'hint',
+            --         -- enable = true,
+            --         -- sign = true,
+            --         -- underline = true,
+            --         -- update_in_insert = false,
+            --       },
+            --     },
+            --   }
+            -- end
+
             require('lspconfig')[server_name].setup(server)
           end,
         },
