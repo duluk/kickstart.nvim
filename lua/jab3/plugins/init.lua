@@ -321,12 +321,20 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'ast-grep', -- Used to search for symbols
+        'awk-language-server', -- LSP for AWK
+        'beautysh', -- Used to format shell scripts
         'clang-format', -- Used to format C/C++ code
         'clangd', -- Used for C/C++
-        'cmake', -- Used for CMake projects
+        'cmake-language-server', -- LSP for CMake
+        'cmakelang', -- Used to lint CMake
+        'cmakelint', -- Used to lint CMake
         'cpplint', -- Used to lint C/C++ code
+        'erb-lint', -- Used to lint Ruby ERB files
         'eslint', -- Used to lint JavaScript, TypeScript, etc.
+        'eslint_d', -- Used to lint JavaScript, TypeScript, etc.
+        'flake8', -- Used to lint Python
         'golangci-lint-langserver', -- LSP for Go
+        'html-lsp', -- LSP for HTML
         'jsonlint', -- Used to lint JSON
         'lua-language-server', -- LSP for Lua
         'ols', -- LSP for Odin
@@ -338,6 +346,7 @@ return {
         'rust-analyzer', -- LSP for Rust
         'shellharden', -- Used to lint shell scripts
         'stylua', -- Used to format Lua code
+        'ts-standard', -- Used to lint TypeScript
         'typescript-language-server', -- LSP for TypeScript
         'zls', -- LSP for Zig
       })
