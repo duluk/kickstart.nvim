@@ -44,6 +44,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
+
+    local actions = require 'telescope.actions'
     require('telescope').setup {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
@@ -53,7 +55,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
       --   },
       -- },
-      -- pickers = {}
+      -- Josean Martinez's config keybinds:
+      defaults = {
+        mappings = {
+          i = { -- I believe this is to make moving in the selection list similar to vim motions
+            ['<C-j>'] = actions.move_selection_next,
+            ['<C-k>'] = actions.move_selection_previous,
+            ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
+          },
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),

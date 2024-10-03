@@ -11,4 +11,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup 'jab3.plugins'
+require('lazy').setup({ { import = 'jab3.plugins' }, { import = 'jab3.plugins.lsp' } }, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+})
