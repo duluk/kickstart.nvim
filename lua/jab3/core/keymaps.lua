@@ -51,9 +51,9 @@ vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %f<CR>', { desc = 'Open current b
 vim.keymap.set('n', '<leader>z', '<cmd>Maximize<CR>', { desc = 'Maimi[z]e pane' })
 
 -- Buffers
---  'next' and 'previous' are not based on order of tabs; and direction is backwards
-vim.keymap.set('n', '<S-Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
-vim.keymap.set('n', '<Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
+--  'next' and 'previous' are not based on order of tabs
+vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
 
 -- [[ Keymaps from Primeagen ]]
 
