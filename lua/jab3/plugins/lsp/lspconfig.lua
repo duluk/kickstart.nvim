@@ -244,7 +244,7 @@ return {
         cmakelint = {},
         cpplint = {},
         css_lsp = {},
-        erb_lint = {},
+        -- erb_lint = {},
         eslint = {},
         eslint_d = {},
         flake8 = {}, -- Used to lint Python

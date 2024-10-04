@@ -7,7 +7,7 @@ return {
     --    local transparent = true
     vim.cmd.colorscheme 'visual_studio_code'
   end,
-} --, {
+-- } --, {
 -- Change the name of the colorscheme plugin below, and then
 -- change the command in the config to whatever the name of that colorscheme is.
 --
@@ -23,7 +23,7 @@ return {
 --      -- You can configure highlights by doing something like:
 --      vim.cmd.hi 'Comment gui=none'
 --    end,
---}
+}
 
 --vim.cmd.colorscheme 'koehler'
 --vim.cmd.colorscheme 'torte'
