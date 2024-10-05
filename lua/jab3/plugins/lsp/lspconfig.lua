@@ -17,8 +17,8 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
-    -- event = { 'BufReadPre', 'BufNewfile' },
-    event = { 'VimEnter' },
+    event = { 'BufReadPre', 'BufNewfile' },
+    -- event = { 'VimEnter' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -27,7 +27,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -171,23 +171,23 @@ return {
       --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
       -- end
 
-      local diag_signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
-      vim.diagnostic.config {
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = diag_signs.Error,
-            [vim.diagnostic.severity.WARN] = diag_signs.Warn,
-            [vim.diagnostic.severity.INFO] = diag_signs.Info,
-            [vim.diagnostic.severity.HINT] = diag_signs.Hint,
-          },
-          linehl = {
-            [vim.diagnostic.severity.ERROR] = 'DiangosticSignError',
-            [vim.diagnostic.severity.WARN] = 'DiangosticSignWarn',
-            [vim.diagnostic.severity.INFO] = 'DiangosticSignInfo',
-            [vim.diagnostic.severity.HINT] = 'DiangosticSignHint',
-          },
-        },
-      }
+      -- local diag_signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
+      -- vim.diagnostic.config {
+      --   signs = {
+      --     text = {
+      --       [vim.diagnostic.severity.ERROR] = diag_signs.Error,
+      --       [vim.diagnostic.severity.WARN] = diag_signs.Warn,
+      --       [vim.diagnostic.severity.INFO] = diag_signs.Info,
+      --       [vim.diagnostic.severity.HINT] = diag_signs.Hint,
+      --     },
+      --     linehl = {
+      --       [vim.diagnostic.severity.ERROR] = 'DiangosticSignError',
+      --       [vim.diagnostic.severity.WARN] = 'DiangosticSignWarn',
+      --       [vim.diagnostic.severity.INFO] = 'DiangosticSignInfo',
+      --       [vim.diagnostic.severity.HINT] = 'DiangosticSignHint',
+      --     },
+      --   },
+      -- }
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -205,16 +205,17 @@ return {
           },
           root_dir = function(fname)
             return require('lspconfig.util').root_pattern(
-              'Makefile',
-              'configure.ac',
-              'configure.in',
-              'config.h.in',
-              'meson.build',
-              'meson_options.txt',
-              'build.ninja'
-            )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or require('lspconfig.util').find_git_ancestor(
-              fname
-            )
+                  'Makefile',
+                  'configure.ac',
+                  'configure.in',
+                  'config.h.in',
+                  'meson.build',
+                  'meson_options.txt',
+                  'build.ninja'
+                )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or
+                require('lspconfig.util').find_git_ancestor(
+                  fname
+                )
           end,
           capabilities = {
             -- So it plays well with GitHub Copilot
@@ -235,23 +236,23 @@ return {
             clangdFileStatus = true,
           },
         },
-        ast_grep = {}, -- Used to search for symbols
-        awk_language_server = {},
-        beautysh = {}, -- Used to format shell scripts
-        clang_format = {},
-        cmake_language_server = {},
+        ['ast-grep'] = {}, -- Used to search for symbols
+        ['awk-language-server'] = {},
+        beautysh = {},     -- Used to format shell scripts
+        ['clang-format'] = {},
+        ['cmake-language-server'] = {},
         cmakelang = {},
         cmakelint = {},
         cpplint = {},
-        css_lsp = {},
+        ['css-lsp'] = {},
         -- erb_lint = {},
         eslint = {},
-        eslint_d = {},
+        eslint_d = {},  -- This does use an underscore
         flake8 = {}, -- Used to lint Python
-        golangci_lint_langserver = {},
-        html_lsp = {},
+        ['golangci-lint-langserver'] = {},
+        ['html-lsp'] = {},
         jsonlint = {},
-        lua_ls = {
+        ['lua-language-server'] = {
           -- cmd = {...},
           -- filetypes = { ...},
           -- capabilities = {},
@@ -271,13 +272,13 @@ return {
         -- 'python-lsp-server = {}, -- LSP for Python
         pyright = {}, -- LSP for Python (better allegedly, but by MS)
         rubocop = {},
-        ruby_lsp = {},
+        ['ruby-lsp'] = {},
         rubyfmt = {},
-        rust_analyzer = {},
+        ['rust-analyzer'] = {},
         shellharden = {}, -- Used to lint shell scripts
         stylua = {},
-        ts_standard = {},
-        typescript_language_server = {},
+        ['ts-standard'] = {},
+        ['typescript-language-server'] = {},
         zls = {}, -- LSP for Zig
         -- gopls = {},
         -- pyright = {},
