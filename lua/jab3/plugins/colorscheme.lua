@@ -5,6 +5,7 @@ return {
   'askfiy/visual_studio_code',
   lazy = false,
   priority = 1000,
+  -- Use the callbak so the colorscheme isn't set until Lazy ensures it is installed
   config = function()
     --    local transparent = true
     vim.cmd.colorscheme 'visual_studio_code'
