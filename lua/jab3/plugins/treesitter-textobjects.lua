@@ -37,16 +37,16 @@ return {
             ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
           },
         },
-        swap = {
-          -- TODO - finish this from Josean's video
-          enable = true,
-          -- swap_next = {
-          --   ['<leader>a'] = '@parameter.inner',
-          -- },
-          -- swap_previous = {
-          --   ['<leader>A'] = '@parameter.inner',
-          -- },
-        },
+        -- swap = {
+        --   -- TODO - finish this from Josean's video
+        --   enable = true,
+        --   -- swap_next = {
+        --   --   ['<leader>a'] = '@parameter.inner',
+        --   -- },
+        --   -- swap_previous = {
+        --   --   ['<leader>A'] = '@parameter.inner',
+        --   -- },
+        -- },
       },
     }
   end,
