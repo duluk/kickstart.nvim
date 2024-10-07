@@ -3,6 +3,10 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+local function is_windows()
+  return vim.loop.os_uname().sysname == 'Windows_NT'
+end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -19,6 +23,11 @@ vim.g.have_nerd_font = true
 
 -- Attempt to set ntrw (Explore) to tree style
 vim.g.netrw_liststyle = 3
+
+if is_windows() then
+  -- Hard-code python3 location since Neovim is being weird about fidning it
+  vim.g.python3_host_prog = 'C:\\Users\\jab3\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe'
+end
 
 -- Helps color schemes display properly
 vim.opt.termguicolors = true
@@ -103,10 +112,12 @@ vim.opt.linebreak = true
 
 vim.opt.swapfile = false
 vim.opt.backup = true
-vim.opt.backupdir = os.getenv 'HOME' .. '/.local/state/nvim/backup'
 -- This should tie to undo plugin
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv 'HOME' .. '/.local/state/nvim/undo'
+if not is_windows() then
+  vim.opt.backupdir = os.getenv 'HOME' .. '/.local/state/nvim/backup'
+  vim.opt.undodir = os.getenv 'HOME' .. '/.local/state/nvim/undo'
+end
 
 -- Don't keep search terms highlighted
 vim.opt.hlsearch = false
