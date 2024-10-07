@@ -10,8 +10,12 @@ return {
       ignore_install = {},
       textobjects = {
         select = {
-          enable = true,
+          -- Any textobject is extended to include preceding or succeeding whitespace
+          -- if true (default is false):
+          include_surrounding_whitespace = true,
+          -- Automatically jump forward to the closes textobject:
           lookahead = true,
+          enable = true,
           keymaps = {
             ['o='] = { query = '@assignment.outer', desc = 'Select outer part of assignment' },
             ['i='] = { query = '@assignment.inner', desc = 'Select inner part of assignment' },
@@ -37,6 +41,12 @@ return {
             ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
           },
         },
+        -- To control what sort of selection mode is used for a given capture group
+        -- selection_modes = {
+        --   ['@parameter.outer'] = 'v', --charwise
+        --   ['@function.outer'] = 'V', --linewise
+        --   ['@class.outer'] = '<c-v>', --blockwise
+        -- },
         -- swap = {
         --   -- TODO - finish this from Josean's video
         --   enable = true,
