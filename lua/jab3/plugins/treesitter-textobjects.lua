@@ -5,38 +5,48 @@ return {
     require('nvim-treesitter.configs').setup {
       modules = {},
       sync_install = false,
-      ensure_installed = {},
       auto_install = true,
+      ensure_installed = {},
       ignore_install = {},
       textobjects = {
         select = {
-          enable = true,
+          -- Any textobject is extended to include preceding or succeeding whitespace
+          -- if true (default is false):
+          include_surrounding_whitespace = true,
+          -- Automatically jump forward to the closes textobject:
           lookahead = true,
+          enable = true,
           keymaps = {
-            ['a='] = { query = '@assignment.outer', desc = 'Select outer part of assignment' },
+            ['o='] = { query = '@assignment.outer', desc = 'Select outer part of assignment' },
             ['i='] = { query = '@assignment.inner', desc = 'Select inner part of assignment' },
             ['l='] = { query = '@assignment.lhs', desc = 'Select left hand side of an assignment' },
             ['r='] = { query = '@assignment.rhs', desc = 'Select right hand side of an assignemtn' },
 
-            ['aa'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter/argument list' },
+            ['oa'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter/argument list' },
             ['ia'] = { query = '@parameter.innter', desc = 'Select inner part of a parameter/argument list' },
 
-            ['ai'] = { query = '@conditional.outer', desc = 'Select outer part of a conditional' },
+            ['oi'] = { query = '@conditional.outer', desc = 'Select outer part of a conditional' },
             ['ii'] = { query = '@conditional.inner', desc = 'Select inner part of a conditional' },
 
-            ['al'] = { query = '@loop.outer', desc = 'Select outer part of a loop' },
+            ['ol'] = { query = '@loop.outer', desc = 'Select outer part of a loop' },
             ['il'] = { query = '@loop.inner', desc = 'Select inner part of a loop' },
 
-            ['af'] = { query = '@call.outer', desc = 'Select outer part of a function call' },
+            ['of'] = { query = '@call.outer', desc = 'Select outer part of a function call' },
             ['if'] = { query = '@call.inner', desc = 'Select inner part of a function call' },
 
-            ['am'] = { query = '@function.outer', desc = 'Select outer part of a function definition' },
+            ['om'] = { query = '@function.outer', desc = 'Select outer part of a function definition' },
             ['im'] = { query = '@function.inner', desc = 'Select inner part of a function definition' },
 
-            ['ac'] = { query = '@class.outer', desc = 'Select outer part of a class' },
+            ['oc'] = { query = '@class.outer', desc = 'Select outer part of a class' },
             ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
           },
         },
+        -- To control what sort of selection mode is used for a given capture group
+        -- selection_modes = {
+        --   ['@parameter.outer'] = 'v', --charwise
+        --   ['@function.outer'] = 'V', --linewise
+        --   ['@class.outer'] = '<c-v>', --blockwise
+        -- },
         -- swap = {
         --   -- TODO - finish this from Josean's video
         --   enable = true,

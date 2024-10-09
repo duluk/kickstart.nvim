@@ -55,7 +55,8 @@ return { -- Highlight, edit, and navigate code
 
       modules = {},
 
-      -- List of parsers to ignore installing (or "all")
+      -- List of parsers to ignore installing (or "all") [I'm assuming this matters
+      -- only when auto_install is false]
       ignore_install = {},
 
       highlight = {
