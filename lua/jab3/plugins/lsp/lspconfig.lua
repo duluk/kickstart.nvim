@@ -204,6 +204,7 @@ return {
           },
           root_dir = function(fname)
             return require('lspconfig.util').root_pattern(
+              'CMakeFiles.txt',
               'Makefile',
               'configure.ac',
               'configure.in',
