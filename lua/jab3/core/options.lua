@@ -104,7 +104,10 @@ vim.opt.cursorline = true
 -- Set the color of the cursorline
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#232323' })
 
-vim.opt.wrap = false
+-- I had this false, but I am so used to the vi/vim line wrap that I want it,
+-- so ensuring it's set
+vim.opt.wrap = true
+
 -- Break lines at this character:
 vim.opt.breakat = ' '
 -- Break lines at word boundaries:
