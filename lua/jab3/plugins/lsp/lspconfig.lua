@@ -310,17 +310,6 @@ return {
       --  other tools, you can run
       --    :Mason
       --
-      --  Lbh pna cerff `t?` sbe uryc va guvf zrah.
-      require('mason').setup {
-        ui = {
-          icons = {
-            package_installed = '✓',
-            package_pending = '➜',
-            package_uninstalled = '✗',
-          },
-        },
-      }
-
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
