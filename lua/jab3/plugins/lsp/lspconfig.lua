@@ -253,7 +253,8 @@ return {
           eslint = {},
           eslint_d = {}, -- This does use an underscore
           flake8 = {}, -- Used to lint Python
-          ['golangci-lint-langserver'] = {},
+          gofumpt = {},
+          gopls = {},
           ['html-lsp'] = {},
           jsonlint = {},
           ['lua-language-server'] = {
