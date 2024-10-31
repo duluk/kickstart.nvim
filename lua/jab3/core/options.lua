@@ -33,7 +33,8 @@ end
 vim.opt.termguicolors = true
 vim.opt.guicursor = ''
 -- If colorscheme has a dark variant, use it
-vim.opt.background = 'dark'
+-- vim.opt.background = 'dark'
+-- vim.o.transparent = true
 
 -- Force backspace to behave "as expected"
 vim.opt.backspace = 'indent,eol,start'
@@ -45,15 +46,30 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
-vim.opt.colorcolumn = ''
+vim.opt.colorcolumn = '80'
 vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#232323' })
-vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = '#000000' })
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
+
+if vim.fn.executable 'xclip' == 1 then
+  vim.g.clipboard = {
+    name = 'xclip',
+    copy = {
+      ['+'] = 'xclip -selection clipboard',
+      ['*'] = 'xclip -selection primary',
+    },
+    paste = {
+      ['+'] = 'xclip -selection clipboard -o',
+      ['*'] = 'xclip -selection primary -o',
+    },
+    cache_enabled = 0,
+  }
+end
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
