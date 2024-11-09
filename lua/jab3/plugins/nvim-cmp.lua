@@ -112,10 +112,11 @@ return { -- Autocompletion
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
           group_index = 0,
         },
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'path' },
+        { name = "copilot", group_index = 2 },
+        { name = 'nvim_lsp', group_index = 2 },
+        { name = 'luasnip', group_index = 2 },
+        { name = 'buffer', group_index = 2 },
+        { name = 'path', group_index = 2 },
       },
     }
   end,
