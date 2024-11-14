@@ -69,11 +69,11 @@ return { -- Autocompletion
         --  This will auto-import if your LSP supports it.
         --  This will expand snippets if the LSP sent a snippet.
         -- ['<C-y>'] = cmp.mapping.confirm { select = true },
-        -- ['<C-CR>'] = cmp.mapping.confirm { select = true },
+        ['<C-CR>'] = cmp.mapping.confirm { select = true },
 
         -- If you prefer more traditional completion keymaps,
         -- you can uncomment the following lines
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+        -- ['<CR>'] = cmp.mapping.confirm { select = true },
         -- ['<Tab>'] = cmp.mapping.select_next_item(),
         -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
@@ -112,7 +112,7 @@ return { -- Autocompletion
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
           group_index = 0,
         },
-        { name = "copilot", group_index = 2 },
+        { name = 'copilot', group_index = 2 },
         { name = 'nvim_lsp', group_index = 2 },
         { name = 'luasnip', group_index = 2 },
         { name = 'buffer', group_index = 2 },
