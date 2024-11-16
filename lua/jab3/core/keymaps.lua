@@ -28,11 +28,13 @@ vim.keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights
 --  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
 
--- Movement
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Panes
+vim.keymap.set('n', '<leader>z', '<cmd>Maximize<CR>', { desc = 'Maimi[z]e pane' })
+---- Movement
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left pane' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right pane' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower pane' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper pane' })
 
 -- Splits
 vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window [V]ertically' })
@@ -47,11 +49,8 @@ vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to [N]ext tab' }
 vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = 'Go to [P]revious tab' })
 vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %f<CR>', { desc = 'Open current buffer in new tab' })
 
--- Panes
-vim.keymap.set('n', '<leader>z', '<cmd>Maximize<CR>', { desc = 'Maimi[z]e pane' })
-
 -- Buffers
---  'next' and 'previous' are not based on order of tabs
+--  'next' and 'previous' are not based on visual order of tabs
 vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Go to previous buffer' })
 
@@ -95,7 +94,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]])
 vim.keymap.set('i', '<C-c>', '<Esc>')
 
 -- Capital Q is of the devil in vim
-vim.keymap.set('n', 'Q', '<nop>')
+vim.keymap.set('n', 'Q', '<noop>')
 
 -- Global replace of word point is on
 vim.keymap.set('n', '<leader>r', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
