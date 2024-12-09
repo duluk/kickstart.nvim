@@ -250,7 +250,7 @@ return {
           cpplint = {},
           ['css-lsp'] = {},
           -- erb_lint = {},
-          eslint = {},
+          -- eslint = {},
           eslint_d = {}, -- This does use an underscore
           flake8 = {}, -- Used to lint Python
           gofumpt = {},
