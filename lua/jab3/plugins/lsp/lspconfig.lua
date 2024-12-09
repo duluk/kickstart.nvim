@@ -282,7 +282,8 @@ return {
           shellharden = {}, -- Used to lint shell scripts
           stylua = {},
           ['ts-standard'] = {},
-          ['typescript-language-server'] = {},
+--          ['typescript-language-server'] = {},
+          vtsls = {},  -- TypeScript lsp (I think)
           zls = {}, -- LSP for Zig
           -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
           --
