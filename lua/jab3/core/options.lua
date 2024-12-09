@@ -56,28 +56,73 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
-if vim.fn.executable 'xclip' == 1 then
-  vim.g.clipboard = {
-    name = 'xclip',
-    copy = {
-      ['+'] = 'xclip -selection clipboard',
-      ['*'] = 'xclip -selection primary',
-    },
-    paste = {
-      ['+'] = 'xclip -selection clipboard -o',
-      ['*'] = 'xclip -selection primary -o',
-    },
-    cache_enabled = 0,
-  }
-end
+-- if vim.fn.executable 'wl-copy' == 1 then
+--   vim.g.clipboard = {
+--     name = 'wl-copy',
+--     copy = {
+--       ['+'] = 'wl-copy',
+--       ['*'] = 'wl-copy --primary',
+--     },
+--     paste = {
+--       ['+'] = 'wl-paste',
+--       ['*'] = 'wl-paste --primary',
+--     },
+--     cache_enabled = 0,
+--   }
+-- if vim.fn.executable 'xclip' == 1 then
+--   vim.g.clipboard = {
+--     name = 'xclip',
+--     copy = {
+--       ['+'] = 'xclip -selection clipboard',
+--       ['*'] = 'xclip -selection primary',
+--     },
+--     paste = {
+--       ['+'] = 'xclip -selection clipboard -o',
+--       ['*'] = 'xclip -selection primary -o',
+--     },
+--     cache_enabled = 0,
+--   }
+-- end
+-- vim.g.clipboard = {
+--   name = 'OSC 52',
+--   copy = {
+--     ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+--     ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+--   },
+--   paste = {
+--     ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+--     ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+--   },
+-- }
+--
+-- Enable OSC 52 clipboard support
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+    ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+  },
+}
 
+-- vim.g.clipboard = nil
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+-- vim.schedule(function()
+vim.opt.clipboard = 'unnamedplus'
+-- end)
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--   callback = function()
+--     if vim.v.event.operator == 'y' then
+--       vim.fn.system("base64 | tr -d '\n' | xargs -0 printf '\\033]52;c;%s\\007' > /dev/tty", vim.fn.getreg '"')
+--     end
+--   end,
+-- })
 
 -- Enable break indent
 vim.opt.breakindent = true
