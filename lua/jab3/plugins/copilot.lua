@@ -14,12 +14,16 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
-if hostname ~= '<redacted>' then
-  return {
-    {
-      'github/copilot.vim',
-    },
-  }
-else
-  return {}
-end
+vim.api.nvim_create_user_command('CopilotToggle', function()
+  vim.cmd('Copilot ' .. (vim.g.copilot_enabled == 0 and 'enable' or 'disable'))
+end, {})
+
+return {
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.g.copilot_enabled = 1
+      vim.g.copilot_workspace_folders = { '~/src/mine' }
+    end,
+  },
+}
