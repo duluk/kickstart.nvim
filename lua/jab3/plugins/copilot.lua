@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 vim.api.nvim_create_user_command('CopilotToggle', function()
   vim.cmd('Copilot ' .. (vim.g.copilot_enabled == 0 and 'enable' or 'disable'))
 end, {})
+vim.keymap.set('n', 'ct', '<Cmd>CopilotToggle<CR>', { noremap = true, silent = true })
 
 return {
   {
