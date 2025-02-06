@@ -1,5 +1,3 @@
-local hostname = vim.fn.hostname()
-
 vim.api.nvim_create_autocmd('ColorScheme', {
   desc = 'Set the color used for Copilot suggestions, no matter the color scheme',
   pattern = '*',
