@@ -23,6 +23,26 @@ return {
     config = function()
       vim.g.copilot_enabled = 1
       vim.g.copilot_workspace_folders = { '~/src/mine' }
+      -- vim.g.copilot_no_tab_map = 1
+      -- vim.g.copilot_no_insert_completion = 1
     end,
   },
 }
+
+-- The completion for this is weird and doesn't work right...for me
+-- return {
+--   'zbirenbaum/copilot.lua',
+--   cmd = 'Copilot',
+--   event = 'InsertEnter',
+--   config = function()
+--     require('copilot').setup {
+--       -- Node.js version must be 16.x or higher
+--       copilot_node_command = 'node',
+--       -- Turn these off when using copilot_cmp:
+--       suggestion = { enabled = false },
+--       panel = { enabled = false },
+--       -- enabled = true,
+--       -- workspace_folders = { '~/src/mine' },
+--     }
+--   end,
+-- }

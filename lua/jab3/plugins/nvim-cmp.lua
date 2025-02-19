@@ -77,6 +77,16 @@ return { -- Autocompletion
         -- ['<Tab>'] = cmp.mapping.select_next_item(),
         -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
+        -- github.com/zirenbaum/copilot-cmp says to use this for tab completion...shrug
+        -- I don't use zirenbaum/copilot.lua so I'm leaving this commented out
+        -- ['<Tab>'] = vim.schedule_wrap(function(fallback)
+        --   if cmp.visible() and has_words_before() then
+        --     cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+        --   else
+        --     fallback()
+        --   end
+        -- end),
+
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display
         --  completions whenever it has completion options available.
@@ -112,7 +122,7 @@ return { -- Autocompletion
           -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
           group_index = 0,
         },
-        { name = 'copilot', group_index = 2 },
+        -- { name = 'copilot', group_index = 2 },
         { name = 'nvim_lsp', group_index = 2 },
         { name = 'luasnip', group_index = 2 },
         { name = 'buffer', group_index = 2 },
