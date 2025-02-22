@@ -251,6 +251,7 @@ return {
           ['css-lsp'] = {},
           -- erb_lint = {},
           -- eslint = {},
+          delve = {}, -- debugger
           eslint_d = {}, -- This does use an underscore
           flake8 = {}, -- Used to lint Python
           gofumpt = {},
@@ -282,8 +283,8 @@ return {
           shellharden = {}, -- Used to lint shell scripts
           stylua = {},
           ['ts-standard'] = {},
---          ['typescript-language-server'] = {},
-          vtsls = {},  -- TypeScript lsp (I think)
+          --          ['typescript-language-server'] = {},
+          vtsls = {}, -- TypeScript lsp (I think)
           zls = {}, -- LSP for Zig
           -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
           --
