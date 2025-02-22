@@ -135,12 +135,6 @@ return {
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-  -- {
-  --   'zbirenbaum/copilot-cmp',
-  --   config = function()
-  --     require('copilot_cmp').setup()
-  --   end,
-  -- },
   {
     'romgrk/barbar.nvim',
     dependencies = {
