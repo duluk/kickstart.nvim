@@ -23,7 +23,7 @@ return {
   {
     'github/copilot.vim',
     config = function()
-      vim.g.copilot_enabled = 1
+      vim.g.copilot_enabled = 0
       vim.g.copilot_workspace_folders = { '~/src/mine' }
       vim.g.copilot_filetypes = {
         ['*'] = true,
