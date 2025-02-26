@@ -54,9 +54,7 @@ return {
       { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
     },
     build = 'make tiktoken', -- Only on MacOS or Linux
-    opts = {
-      model = 'claude-3.5-sonnet',
-    },
+    model = 'claude-3.7-sonnet-20250219',
     -- See Commands section for default commands if you want to lazy load on them
   },
 }
