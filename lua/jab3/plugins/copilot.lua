@@ -38,4 +38,15 @@ return {
       }
     end,
   },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'github/copilot.vim' },
+      { 'nvim-lua/plenary.nvim', branch = 'master' },
+    },
+    build = 'make tiktoken', -- Only on MacOS or Linux
+    model = 'claude-3.7-sonnet',
+    agent = 'copilot',
+    -- See Commands section for default commands if you want to lazy load on them
+  },
 }
