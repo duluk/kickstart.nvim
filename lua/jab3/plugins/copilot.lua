@@ -45,8 +45,18 @@ return {
       { 'nvim-lua/plenary.nvim', branch = 'master' },
     },
     build = 'make tiktoken', -- Only on MacOS or Linux
-    model = 'claude-3.7-sonnet',
-    agent = 'copilot',
+    opts = {
+      agent = 'copilot',
+      model = 'o3-mini',
+      -- Other models:
+      --   claude-3.7-sonnet
+      --   claude-3.7-sonnet-thought
+      --   gemini-2.0-flash-001
+      --   gpt-4o
+      --   gpt-4o-mini
+      --   o1
+      --   o3-mini
+    },
     -- See Commands section for default commands if you want to lazy load on them
   },
 }
