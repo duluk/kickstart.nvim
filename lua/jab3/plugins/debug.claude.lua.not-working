@@ -1,0 +1,114 @@
+return {
+  'mfussenegger/nvim-dap',
+  dependencies = {
+    'rcarriga/nvim-dap-ui',
+    'nvim-neotest/nvim-nio',
+    'williamboman/mason.nvim',
+    'jay-babu/mason-nvim-dap.nvim',
+    -- Add other debuggers as needed:
+    -- 'leoluz/nvim-dap-go',
+  },
+  config = function()
+    local dap = require 'dap'
+    local dapui = require 'dapui'
+
+    -- Enable virtual text
+    vim.g.dap_virtual_text = true
+
+    -- Enable logging for DAP
+    dap.set_log_level 'TRACE'
+
+    -- Also add error handling to the continue command
+    vim.keymap.set('n', '<F5>', function()
+      local ok, err = pcall(dap.continue)
+      if not ok then
+        print('DAP error: ', err)
+      end
+    end, { desc = 'Debug: Start/Continue' })
+
+    -- Basic debugging keymaps
+    -- vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<F10>', dap.step_into, { desc = 'Debug: Step Into' })
+    vim.keymap.set('n', '<F6>', dap.step_over, { desc = 'Debug: Step Over' })
+    vim.keymap.set('n', '<F12>', dap.step_out, { desc = 'Debug: Step Out' })
+    vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    vim.keymap.set('n', '<leader>B', function()
+      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+    end, { desc = 'Debug: Set Breakpoint' })
+    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result' })
+
+    -- Mason-nvim-dap setup
+    require('mason-nvim-dap').setup {
+      automatic_installation = true,
+      ensure_installed = {
+        -- Add the debuggers you want to be installed automatically
+        'delve', -- for Go
+        -- 'python',
+        -- 'cppdbg',
+        -- etc.
+      },
+      handlers = {
+        function(config)
+          -- All sources with no handler get passed here
+          require('mason-nvim-dap').default_setup(config)
+        end,
+        -- Add language specific handlers if needed
+        -- python = function(config)
+        --   config.adapters = {
+        --     type = "executable",
+        --     command = "/usr/bin/python3",
+        --     args = {
+        --       "-m",
+        --       "debugpy.adapter",
+        --     },
+        --   }
+        --   require('mason-nvim-dap').default_setup(config)
+        -- end,
+      },
+    }
+
+    -- DAP UI setup
+    dapui.setup {
+      layouts = {
+        {
+          elements = {
+            { id = 'scopes', size = 0.25 },
+            { id = 'breakpoints', size = 0.25 },
+            { id = 'stacks', size = 0.25 },
+            { id = 'watches', size = 0.25 },
+          },
+          position = 'left',
+          size = 40,
+        },
+        {
+          elements = {
+            { id = 'repl', size = 0.5 },
+            { id = 'console', size = 0.5 },
+          },
+          position = 'bottom',
+          size = 10,
+        },
+      },
+    }
+
+    -- Automatically open/close DAP UI
+    dap.listeners.after.event_initialized['dapui_config'] = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated['dapui_config'] = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited['dapui_config'] = function()
+      dapui.close()
+    end
+
+    dap.configurations.go = {
+      {
+        type = 'go',
+        name = 'Debug',
+        request = 'launch',
+        program = '${file}',
+      },
+    }
+  end,
+}

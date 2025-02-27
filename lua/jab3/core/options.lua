@@ -94,19 +94,32 @@ vim.opt.showmode = false
 --     ['*'] = require('vim.ui.clipboard.osc52').paste '*',
 --   },
 -- }
---
--- Enable OSC 52 clipboard support
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-    ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-  },
-}
+
+if vim.fn.has 'mac' == 1 then
+  vim.g.clipboard = {
+    copy = {
+      ['+'] = "reattach-to-user-namespace -l bash -c 'pbcopy'",
+      ['*'] = "reattach-to-user-namespace -l bash -c 'pbcopy'",
+    },
+    paste = {
+      ['+'] = "reattach-to-user-namespace -l bash -c 'pbpaste'",
+      ['*'] = "reattach-to-user-namespace -l bash -c 'pbpaste'",
+    },
+  }
+else
+  -- Enable OSC 52 clipboard support
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+    },
+    -- paste = {
+    --   ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+    --   ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+    -- },
+  }
+end
 
 -- vim.g.clipboard = nil
 -- Sync clipboard between OS and Neovim.

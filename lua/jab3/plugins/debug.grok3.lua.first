@@ -1,0 +1,132 @@
+-- lua/plugins/debug.lua
+
+return {
+  -- DAP core and UI
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui', -- UI for DAP
+      'nvim-neotest/nvim-nio', -- Required by nvim-dap-ui
+      'leoluz/nvim-dap-go', -- Go-specific DAP support
+    },
+    config = function()
+      local dap = require 'dap'
+      local dapui = require 'dapui'
+
+      -- DAP UI setup
+      dapui.setup {
+        layouts = {
+          {
+            elements = {
+              { id = 'scopes', size = 0.25 },
+              { id = 'breakpoints', size = 0.25 },
+              { id = 'stacks', size = 0.25 },
+              { id = 'watches', size = 0.25 },
+            },
+            size = 40,
+            position = 'left',
+          },
+          {
+            elements = { 'repl' },
+            size = 10,
+            position = 'bottom',
+          },
+        },
+      }
+
+      -- Auto-open/close DAP UI
+      dap.listeners.after.event_initialized['dapui_config'] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated['dapui_config'] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited['dapui_config'] = function()
+        dapui.close()
+      end
+
+      -- Go DAP setup (via nvim-dap-go)
+      require('dap-go').setup()
+
+      -- Keybindings
+      vim.keymap.set('n', '<F5>', function()
+        dap.continue()
+      end, { desc = 'Debug: Continue' })
+      vim.keymap.set('n', '<F10>', function()
+        dap.step_over()
+      end, { desc = 'Debug: Step Over' })
+      vim.keymap.set('n', '<F11>', function()
+        dap.step_into()
+      end, { desc = 'Debug: Step Into' })
+      vim.keymap.set('n', '<F12>', function()
+        dap.step_out()
+      end, { desc = 'Debug: Step Out' })
+      vim.keymap.set('n', '<Leader>b', function()
+        dap.toggle_breakpoint()
+      end, { desc = 'Debug: Toggle Breakpoint' })
+      vim.keymap.set('n', '<Leader>B', function()
+        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end, { desc = 'Debug: Conditional Breakpoint' })
+      vim.keymap.set('n', '<Leader>dr', function()
+        dap.repl.open()
+      end, { desc = 'Debug: Open REPL' })
+      vim.keymap.set('n', '<Leader>dt', function()
+        require('dap-go').debug_test()
+      end, { desc = 'Debug: Go Test' })
+    end,
+  },
+
+  -- Mason for DAP server management
+  {
+    'williamboman/mason.nvim',
+    dependencies = {
+      'williamboman/mason-nvim-dap.nvim',
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-nvim-dap').setup {
+        ensure_installed = {
+          'delve', -- Go debugger
+          'codelldb', -- C/C++ debugger (for future use)
+        },
+        automatic_installation = true, -- Auto-install configured adapters
+        handlers = {
+          function(config)
+            -- Default handler for all DAP servers
+            require('mason-nvim-dap').default_setup(config)
+          end,
+          -- Explicit Go handler (optional, since nvim-dap-go handles it)
+          delve = function(config)
+            require('mason-nvim-dap').default_setup(config)
+          end,
+          -- Pre-configure codelldb for C/C++ (for future use)
+          codelldb = function(config)
+            require('dap').adapters.codelldb = {
+              type = 'server',
+              port = '${port}',
+              executable = {
+                command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
+                args = { '--port', '${port}' },
+              },
+            }
+            require('dap').configurations.cpp = {
+              {
+                name = 'Launch',
+                type = 'codelldb',
+                request = 'launch',
+                program = function()
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+              },
+            }
+            -- Reuse for C (same config)
+            require('dap').configurations.c = require('dap').configurations.cpp
+            require('mason-nvim-dap').default_setup(config)
+          end,
+        },
+      }
+    end,
+  },
+}
